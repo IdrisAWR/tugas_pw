@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -16,8 +17,11 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        return view('index.pembayaran');
+        $totalPaket = Pembayaran::count();
+        $pembayaran = Pembayaran::with(['paket', 'user'])->paginate(5);
+        return view('index.pembayaran', compact('totalPaket', 'pembayaran'));
     }
+
 
     public function showPembayaran($id)
     {
@@ -28,7 +32,7 @@ class PembayaranController extends Controller
         $totalPembayaran = $paket->harga_bulanan;
 
         // Tampilkan halaman pembayaran
-        return view('index.pembayaran', compact('paket', 'totalPembayaran'));
+        return view('index.bayar', compact('paket', 'totalPembayaran'));
     }
 
     public function prosesPembayaran(Request $request)
@@ -39,7 +43,7 @@ class PembayaranController extends Controller
             'user_id' => 'required',
             'jumlah' => 'required|numeric',
         ]);
-    
+
         // Simpan data pembayaran ke database
         Pembayaran::create([
             'tgl_pembayaran' => now(),
@@ -49,9 +53,7 @@ class PembayaranController extends Controller
             'user_id' => $request->user_id,
             'paket_id' => $request->paket_id,
         ]);
-    
+
         return redirect('/paket')->with('success', 'Pembayaran berhasil diproses.');
-        }
+    }
 }
-
-

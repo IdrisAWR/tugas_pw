@@ -17,7 +17,7 @@ class PaketWifi extends Model
 
     public function pembayarans()
     {
-        return $this->hasMany(Pembayaran::class, 'paket_id');
+        return $this->hasMany(Pembayaran::class);
     }
 
     protected $fillable = [

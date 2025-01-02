@@ -15,14 +15,14 @@ class Pembayaran extends Model
     protected $primaryKey = 'pembayaran_id';
     public $timestamps = true;
 
-    public function paket()
-    {
-        return $this->belongsTo(PaketWifi::class);
-    }
-
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'user_id'); // 'user_id' di tabel pembayaran dan users
+    }
+
+    public function paket()
+    {
+        return $this->belongsTo(PaketWifi::class, 'paket_id', 'paket_id'); // 'paket_id' di tabel pembayaran dan paket_wifis
     }
 
     protected $fillable = [
