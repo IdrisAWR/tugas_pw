@@ -61,9 +61,9 @@
     <div class="min-h-screen flex flex-col container mx-auto p-6 bg-white rounded-lg shadow-md">
         <h1 class="text-2xl text-center font-bold mb-6">Tagihan Pembayaran</h1>
 
-        @if ($totalPaket === 0)
+        @if ($pembayaran->isEmpty())
             <div class="text-center p-6 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-                <p class="text-2xl font-semibold">Belum ada tagihan pembayaran</p>
+                <p class="text-2xl font-semibold">Tidak ada pembayaran yang ditemukan</p>
             </div>
         @else
             <table class="min-w-full bg-white">
@@ -73,8 +73,7 @@
                         <th class="py-2">Periode Pembayaran</th>
                         <th class="py-2">Jumlah</th>
                         <th class="py-2">Status</th>
-                        <th class="py-2">Nama</th>
-                        <th class="py-2">Paket</th>
+                        <th class="py-2">Nama Paket</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -84,18 +83,18 @@
                             <td class="border px-4 py-2">{{ $bayar->periode_pembayaran }}</td>
                             <td class="border px-4 py-2">{{ $bayar->jumlah }}</td>
                             <td class="border px-4 py-2">{{ $bayar->status }}</td>
-                            <td class="border px-4 py-2">{{ $bayar->user->name ?? 'N/A' }}</td>
-                            <td class="border px-4 py-2">{{ $bayar->paket->nama_paket ?? 'N/A' }}</td>
+                            <td class="border px-4 py-2">{{ $bayar->paket->nama_paket }}</td>
+                            <!-- Menampilkan nama paket -->
                         </tr>
                     @endforeach
                 </tbody>
-
             </table>
 
             <div class="mt-4">
-                {{ $pembayaran->links() }}
+                {{ $pembayaran->links() }} <!-- Menampilkan pagination -->
             </div>
         @endif
+
     </div>
 </body>
 <script></script>

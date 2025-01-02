@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pembayaran;
 use Illuminate\Support\Facades\DB;
 use App\Models\PaketWifi;
+use Illuminate\Support\Facades\Auth;
 
 class PembayaranController extends Controller
 {
@@ -15,12 +16,16 @@ class PembayaranController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
+
+
     public function index()
     {
-        $totalPaket = Pembayaran::count();
-        $pembayaran = Pembayaran::with(['paket', 'user'])->paginate(5);
-        return view('index.pembayaran', compact('totalPaket', 'pembayaran'));
+        $pembayaran = Pembayaran::with(['paket', 'user'])
+            ->where('user_id', Auth::id())
+            ->paginate(5);
+        return view('index.pembayaran', compact('pembayaran'));
     }
+
 
 
     public function showPembayaran($id)

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WiFi-Q : Profile Akun</title>
-    <link rel="icon" type="image/png" href="{{ asset('img/logo_web.png') }}"/>
+    <link rel="icon" type="image/png" href="{{ asset('img/logo_web.png') }}" />
 </head>
 
 <body>
@@ -29,6 +29,10 @@
             <div class="flex items-center justify-between py-2">
                 <p class="text-gray-600">Status:</p>
                 <p class="font-semibold">{{ Auth::user()->status_aktif }}</p>
+            </div>
+            <div class="flex items-center justify-between py-2">
+                <p class="text-gray-600">Total Paket Anda:</p>
+                <p class="font-semibold">{{ $total_paket_pembayaran }}</p>
             </div>
         </div>
     </div>

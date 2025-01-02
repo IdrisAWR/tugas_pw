@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaketWifiController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('index.beranda');
@@ -18,9 +19,7 @@ Route::get('/bantuan', function () {
 
 // route yang perlu authtentikasi dulu
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', function () {
-        return view('index.profile');
-    })->name('profile');
+    Route::get('/profile', [ProfileController::class, 'index'],)->name('profile');
 });
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
