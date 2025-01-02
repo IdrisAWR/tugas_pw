@@ -11,7 +11,7 @@
 
 <body class="bg-white text-gray-800">
     @include('layouts.navbar')
-    <div class="container mx-auto p-4">
+    <div class="min-h-screen flex flex-col container mx-auto p-4">
         <h1 class="text-4xl font-bold mb-6 text-center">Paket</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Paket Basic -->
@@ -103,8 +103,10 @@
         </div>
     </div>
 </body>
-<footer class="bg-gray-800 text-white py-4 text-center">
-    <p>&copy; {{ date('Y') }} WiFi-Q. All rights reserved.</p>
+<footer class="bg-gray-800 text-white py-4">
+    <div class="container mx-auto text-center">
+        <p>&copy; {{ date('Y') }} WiFi-Q. All rights reserved.</p>
+    </div>
 </footer>
 
 </html>

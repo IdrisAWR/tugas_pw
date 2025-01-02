@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="{{ asset('img/logo_web.png') }}" />
 </head>
 <body>
-    @include('index.navbar')
+    @include('layouts.navbar')
     <div class="container mx-auto px-4 py-10">
         <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
             <h1 class="text-2xl font-bold text-gray-800 mb-4">Detail Paket:</h1>
@@ -36,8 +36,13 @@
                 *Syarat dan Kondisi berlaku. Harga dapat berubah sewaktu-waktu.
             </p>
             
+            <div class="text-center mt-6"></div>
+                <a href="{{ route('paket.bayar', $paket->paket_id) }}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                Bayar Sekarang
+                </a>
+            </div>
             
-            <div class="text-right">
+            <div class="text-right mt-6">
                 <a href="/paket" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
                 Kembali ke daftar paket
                 </a>

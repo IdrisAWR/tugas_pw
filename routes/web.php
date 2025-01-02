@@ -25,13 +25,13 @@ Route::middleware('auth')->group(function () {
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/paket/{id}', [PaketWifiController::class, 'show'])->name('paket.index');
 
-Route::post('/pembayaran/store', [PembayaranController::class, 'store'])->name('pembayaran.store');
+// Route::post('/pembayaran/store', [PembayaranController::class, 'store'])->name('pembayaran.store');
 
-Route::get('/bantuan/panduan1', function () {
-    return view('bantuan.panduan1');
-});
+Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
+Route::get('/paket/{id}/bayar', [PembayaranController::class, 'showPembayaran'])->name('paket.bayar');
+Route::post('/pembayaran', [PembayaranController::class, 'prosesPembayaran'])->name('pembayaran.proses');

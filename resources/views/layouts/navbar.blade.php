@@ -72,11 +72,9 @@
         <nav id="menu"
             class="hidden md:flex md:flex-col md:space-y-4 lg:space-y-8 items-center font-semibold text-gray-700">
             <ul class="list-none flex md:space-x-4">
-                <li><a href="/" class="block text-black-800 hover:text-blue-700 py-2 px-4 md:py-0">Beranda</a>
-                </li>
+                <li><a href="/" class="block text-black-800 hover:text-blue-700 py-2 px-4 md:py-0">Beranda</a></li>
                 <li><a href="/paket" class="block text-black-800 hover:text-blue-700 py-2 px-4 md:py-0">Paket</a></li>
-                <li><a href="/pembayaran"
-                        class="block text-black-800 hover:text-blue-700 py-2 px-4 md:py-0">Pembayaran</a></li>
+                <li><a href="/pembayaran" class="block text-black-800 hover:text-blue-700 py-2 px-4 md:py-0">Pembayaran</a></li>
                 <li><a href="/bantuan" class="block text-black-800 hover:text-blue-700 py-2 px-4 md:py-0">Bantuan</a>
                 </li>
             </ul>
@@ -85,13 +83,12 @@
         <!-- Authentication Section -->
         @if (Auth::check())
             <div class="relative group">
-                <button
-                    class="text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center focus:outline-none">
-                    <span>{{ Auth::user()->name }}</span> <!-- Menampilkan nama pengguna -->
-                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                <a href="/profile" class="text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center focus:outline-none">
+                    <svg class="fill-current h-4 w-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.064 5.859A1.993 1.993 0 004 3H2v10h2V3z" />
                     </svg>
-                </button>
+                    <span>{{ Auth::user()->name }}</span> <!-- Menampilkan nama pengguna -->
+                </a>
                 <ul class="absolute hidden group-hover:block bg-white text-gray-700 pt-1 right-0 shadow-md">
                     <li>
                         <form action="{{ route('logout') }}" method="post">
@@ -280,5 +277,5 @@
         menu.classList.toggle('hidden');
     }
 </script>
-
+    <div style="height: 5rem;"></div>
 </html>

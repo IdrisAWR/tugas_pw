@@ -45,6 +45,9 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'no_hp' => $request->no_hp,
+            'alamat' => $request->alamat,
+            'status_aktif' => $request->status_aktif
         ]);
 
         Auth::login($user);
@@ -56,6 +59,6 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->back()->with('success', 'You have been logged out');
+        return redirect('/')->with('success', 'You have been logged out');
     }
 }

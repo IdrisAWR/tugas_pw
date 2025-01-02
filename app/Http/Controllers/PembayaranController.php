@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pembayaran;
 use Illuminate\Support\Facades\DB;
+use App\Models\PaketWifi;
 
 class PembayaranController extends Controller
 {
@@ -15,26 +16,42 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-    $pembayarans = Pembayaran::with(['user_id', 'paket_id'])->get();
-    return view('index.pembayaran', compact('pembayarans'));
+        return view('index.pembayaran');
     }
-    public function store(Request $request)
-    {
-        DB::transaction(function () use ($request) {
-            foreach ($request->input('pembayarans', []) as $pembayaranData) {
-                Pembayaran::create([
-                    'tgl_pembayaran' => $pembayaranData['tgl_pembayaran'],
-                    'periode_pembayaran' => $pembayaranData['periode_pembayaran'],
-                    'jumlah' => $pembayaranData['jumlah'],
-                    'status' => $pembayaranData['status'],
-                    'user_id' => $pembayaranData['user_id'],
-                    'paket_id' => $pembayaranData['paket_id'],
-                ]);
-            }
-        });
 
-        return redirect()->back()->with('success', 'Data pembayaran berhasil disimpan!');
+    public function showPembayaran($id)
+    {
+        // Ambil data paket berdasarkan ID
+        $paket = PaketWifi::findOrFail($id);
+
+        // Hitung total pembayaran (contoh: harga bulanan)
+        $totalPembayaran = $paket->harga_bulanan;
+
+        // Tampilkan halaman pembayaran
+        return view('index.pembayaran', compact('paket', 'totalPembayaran'));
     }
+
+    public function prosesPembayaran(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'paket_id' => 'required|exists:paket_wifis,paket_id',
+            'user_id' => 'required',
+            'jumlah' => 'required|numeric',
+        ]);
+    
+        // Simpan data pembayaran ke database
+        Pembayaran::create([
+            'tgl_pembayaran' => now(),
+            'periode_pembayaran' => $request->periode_pembayaran,
+            'jumlah' => $request->jumlah,
+            'status' => $request->status,
+            'user_id' => $request->user_id,
+            'paket_id' => $request->paket_id,
+        ]);
+    
+        return redirect('/paket')->with('success', 'Pembayaran berhasil diproses.');
+        }
 }
 
 

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('pembayaran_id');
             $table->date('tgl_pembayaran');
             $table->string('periode_pembayaran'); // Format: "Januari 2024"
-            $table->decimal('jumlah', 10, 2);
+            $table->string('jumlah');
             $table->enum('status', ['lunas', 'belum_lunas']); 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('paket_id');
