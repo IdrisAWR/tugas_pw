@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    @include('index.navbar')
+    @include('layouts.navbar')
     <div class="container mx-auto p-4">
         <h1 class="text-2xl font-bold mb-4">Profile</h1>
         <div class="bg-white p-4 rounded-lg shadow-md">
@@ -26,7 +28,8 @@
         </div>
     </div>
 </body>
-    <footer class="bg-gray-800 text-white py-4 text-center">
-        <p>&copy; {{ date('Y') }} WiFi-Q. All rights reserved.</p>
-    </footer>
+<footer class="bg-gray-800 text-white py-4 text-center">
+    <p>&copy; {{ date('Y') }} WiFi-Q. All rights reserved.</p>
+</footer>
+
 </html>

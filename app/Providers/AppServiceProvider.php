@@ -3,20 +3,16 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Routing\Router;
-use App\Http\Middleware\AuthMiddleware;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View as ViewInstance;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @param \Illuminate\Routing\Router $router
-     * @return void
-     */
-    public function boot(Router $router)
+    public function register(): void
     {
-        $router->aliasMiddleware('auth', AuthMiddleware::class);
+        //
     }
-}
 
+    public function boot(): void {}
+}

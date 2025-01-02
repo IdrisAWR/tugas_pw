@@ -20,7 +20,7 @@ class AuthMiddleware
         // Cek apakah pengguna sudah login
         if (!Auth::check()) {
             // Jika tidak login, arahkan ke halaman login
-            return redirect()->route('login')->with('error', 'Anda harus login terlebih dahulu.');
+            return redirect()->back()->with('error', 'You must be logged in');
         }
 
         // Jika login, lanjutkan ke permintaan berikutnya
