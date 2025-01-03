@@ -94,14 +94,14 @@
                     <span>{{ Auth::user()->name }}</span>
                 </div>
                 <ul class="absolute hidden group-hover:block bg-white text-gray-700 pt-1 right-0 shadow-md">
+                    <li class="mb-2">
+                        <a href="/profile" class="block bg-gray-200 hover:bg-gray-400 py-2 px-4">Profile</a>
+                    </li>
                     <li class="my-2">
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
                             <button class="block bg-gray-200 hover:bg-gray-400 py-2 px-4" type="submit">Logout</button>
                         </form>
-                    </li>
-                    <li>
-                        <a href="/profile" class="block bg-gray-200 hover:bg-gray-400 py-2 px-4">profile</a>
                     </li>
                 </ul>
             </div>
